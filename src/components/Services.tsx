@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Code, Smartphone, Cloud, Palette, Shield, Zap } from 'lucide-react';
+import { Code, Smartphone, Bot, Users } from 'lucide-react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
 
 const Services = () => {
@@ -11,39 +11,27 @@ const Services = () => {
   const services = [
     {
       icon: Code,
-      title: 'Web Development',
-      description: 'Custom web applications built with modern frameworks and technologies for optimal performance.',
+      title: 'Web & Mobile Development',
+      description: 'Custom web applications and mobile apps built with modern frameworks and technologies for optimal performance across all platforms.',
       color: 'from-purple-500 to-pink-500'
     },
     {
-      icon: Smartphone,
-      title: 'Mobile Apps',
-      description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
+      icon: Bot,
+      title: 'Automation & AI Integrations',
+      description: 'Intelligent automation solutions and AI integrations that streamline your business processes and enhance productivity.',
       color: 'from-cyan-500 to-blue-500'
     },
     {
-      icon: Cloud,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and deployment solutions for modern applications.',
+      icon: Users,
+      title: 'Dedicated Remote Teams',
+      description: 'Skilled remote development teams that work as an extension of your business, delivering consistent results and expertise.',
       color: 'from-emerald-500 to-teal-500'
     },
     {
-      icon: Palette,
-      title: 'UI/UX Design',
-      description: 'Beautiful, intuitive designs that engage users and drive conversions.',
+      icon: Smartphone,
+      title: 'Custom Solutions',
+      description: 'Tailored software solutions designed specifically for your unique business requirements and industry challenges.',
       color: 'from-orange-500 to-red-500'
-    },
-    {
-      icon: Shield,
-      title: 'Security',
-      description: 'Comprehensive security solutions to protect your applications and data.',
-      color: 'from-violet-500 to-purple-500'
-    },
-    {
-      icon: Zap,
-      title: 'Performance',
-      description: 'Optimization services to ensure your applications run at peak performance.',
-      color: 'from-yellow-500 to-orange-500'
     }
   ];
 
@@ -96,7 +84,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             const isCardVisible = visibleCards.includes(index);

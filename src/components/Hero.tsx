@@ -16,6 +16,13 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       ref={elementRef}
@@ -75,11 +82,17 @@ const Hero = () => {
           </p>
           
           <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <button className="group bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 flex items-center">
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="group bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 flex items-center"
+            >
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-semibold hover:border-purple-400 hover:text-purple-400 hover:scale-105 transition-all duration-300">
+            <button 
+              onClick={() => scrollToSection('portfolio')}
+              className="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-semibold hover:border-purple-400 hover:text-purple-400 hover:scale-105 transition-all duration-300"
+            >
               View Our Work
             </button>
           </div>

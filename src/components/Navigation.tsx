@@ -74,7 +74,10 @@ const Navigation = () => {
                 {item.label}
               </button>
             ))}
-            <button className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300">
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+            >
               Get Started
             </button>
           </div>
@@ -106,7 +109,10 @@ const Navigation = () => {
                 {item.label}
               </button>
             ))}
-            <button className="w-full mt-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-full font-medium">
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="w-full mt-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-6 py-2 rounded-full font-medium"
+            >
               Get Started
             </button>
           </div>

@@ -10,10 +10,10 @@ const Team = () => {
 
   const teamMembers = [
     {
-      name: 'Sarah Chen',
-      role: 'CEO & Founder',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Visionary leader with 12+ years in tech innovation and business strategy.',
+      name: 'Omar',
+      role: 'Founder',
+      image: '/Omar.jpg',
+      bio: 'Visionary leader with extensive experience in technology innovation and business strategy, driving Tech Teract\'s mission forward.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -21,54 +21,10 @@ const Team = () => {
       }
     },
     {
-      name: 'Marcus Rodriguez',
-      role: 'CTO',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Full-stack architect specializing in scalable cloud solutions and AI integration.',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'Emily Watson',
-      role: 'Lead Designer',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Creative director with expertise in UX/UI design and brand development.',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'David Kim',
-      role: 'Senior Developer',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Backend specialist with deep knowledge in microservices and DevOps.',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'Lisa Thompson',
-      role: 'Product Manager',
-      image: 'https://images.pexels.com/photos/3756681/pexels-photo-3756681.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Strategic product leader focused on user-centered design and market growth.',
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#'
-      }
-    },
-    {
-      name: 'Alex Johnson',
-      role: 'Mobile Developer',
-      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Cross-platform mobile expert with React Native and Flutter expertise.',
+      name: 'Mubashir Raza',
+      role: 'Co-Founder',
+      image: '/mubashirPic.jpeg',
+      bio: 'Strategic co-founder with deep expertise in software development and team leadership, ensuring exceptional project delivery.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -126,7 +82,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {teamMembers.map((member, index) => {
             const isMemberVisible = visibleMembers.includes(index);
             
@@ -146,7 +102,7 @@ const Team = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-64 object-cover group-hover:scale-125 transition-transform duration-1000"
+                    className="w-full h-80 object-cover group-hover:scale-125 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
                   
@@ -172,16 +128,16 @@ const Team = () => {
                 </div>
 
                 {/* Member Details */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
                     {member.name}
                   </h3>
                   
-                  <div className="text-purple-400 font-medium mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                  <div className="text-purple-400 font-medium mb-4 text-lg group-hover:text-cyan-400 transition-colors duration-300">
                     {member.role}
                   </div>
                   
-                  <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                  <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                     {member.bio}
                   </p>
                 </div>
