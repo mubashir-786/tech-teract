@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Users, Award, Clock, TrendingUp, Building2, ExternalLink } from 'lucide-react';
-import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
 
 const About = () => {
   const [counts, setCounts] = useState({ projects: 0, clients: 0, years: 0, satisfaction: 0 });
-  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.3 });
-  const parallaxOffset = useParallax(0.2);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   const stats = [
     { icon: Award, label: 'Projects Completed', value: 250, suffix: '+' },
@@ -49,72 +46,62 @@ const About = () => {
   ];
 
   useEffect(() => {
-    if (isVisible) {
-      // Animate counters
-      const duration = 2500;
-      const startTime = Date.now();
+    // Trigger animations on component mount
+    setIsVisible(true);
+    
+    // Animate counters
+    const duration = 2500;
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
       
-      const animate = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smoother animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        
-        setCounts({
-          projects: Math.floor(250 * easeOutQuart),
-          clients: Math.floor(150 * easeOutQuart),
-          years: Math.floor(8 * easeOutQuart),
-          satisfaction: Math.floor(98 * easeOutQuart)
-        });
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
+      // Easing function for smoother animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       
-      animate();
-    }
-  }, [isVisible]);
+      setCounts({
+        projects: Math.floor(250 * easeOutQuart),
+        clients: Math.floor(150 * easeOutQuart),
+        years: Math.floor(8 * easeOutQuart),
+        satisfaction: Math.floor(98 * easeOutQuart)
+      });
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    animate();
+  }, []);
 
   return (
     <section 
-      ref={elementRef}
       id="about" 
       className="py-20 bg-gray-900 relative overflow-hidden"
     >
-      {/* Enhanced Parallax Background */}
+      {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-transparent to-cyan-900/10" />
-        <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl transition-transform duration-1000"
-          style={{ 
-            transform: `translateY(${parallaxOffset * 0.3}px) scale(${1.2 + parallaxOffset * 0.0002}) rotate(${parallaxOffset * 0.05}deg)` 
-          }}
-        />
-        <div 
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl transition-transform duration-1000"
-          style={{ 
-            transform: `translateY(${-parallaxOffset * 0.2}px) scale(${1.2 + parallaxOffset * 0.0002}) rotate(${-parallaxOffset * 0.05}deg)` 
-          }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
           {/* Content */}
-          <div className={`transition-all duration-1200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
+          <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               About <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Tech Teract</span>
             </h2>
             
-            <p className={`text-xl text-gray-300 mb-6 leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <p className="text-xl text-gray-300 mb-6 leading-relaxed">
               Founded by Omar after 3 successful years as a senior consultant at Consid Sweden, 
               Tech Teract was born from a vision to deliver world-class digital solutions with 
               the agility and personal touch that only an independent agency can provide.
             </p>
             
-            <p className={`text-gray-300 mb-8 leading-relaxed transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <p className="text-gray-300 mb-8 leading-relaxed">
               Our founder's extensive experience working with major Swedish enterprises like Fronta, 
               Dometic, Ampiro, and Elitfonster has shaped our approach to building scalable, 
               enterprise-grade solutions. Now based in the UK, we're currently developing 
@@ -131,8 +118,7 @@ const About = () => {
               ].map((item, index) => (
                 <div 
                   key={index}
-                  className={`flex items-center space-x-3 transition-all duration-800 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'}`}
-                  style={{ transitionDelay: `${700 + index * 150}ms` }}
+                  className="flex items-center space-x-3"
                 >
                   <div className={`w-2 h-2 rounded-full ${index % 2 === 0 ? 'bg-purple-400' : 'bg-cyan-400'} animate-pulse`} />
                   <span className="text-gray-300">{item}</span>
@@ -141,8 +127,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* Enhanced Stats Grid */}
-          <div className={`transition-all duration-1200 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
+          {/* Stats Grid */}
+          <div>
             <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
@@ -153,11 +139,7 @@ const About = () => {
                 return (
                   <div
                     key={index}
-                    className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 text-center hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:-translate-y-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                    style={{ 
-                      transitionDelay: `${600 + index * 200}ms`,
-                      transform: isVisible ? `translateY(${parallaxOffset * 0.05}px)` : undefined
-                    }}
+                    className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 text-center hover:border-purple-500/50 transition-all duration-500 group hover:scale-105 hover:-translate-y-2"
                   >
                     <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                       <Icon className="h-8 w-8 text-white" />
@@ -180,8 +162,8 @@ const About = () => {
           </div>
         </div>
 
-        {/* Enhanced Major Clients Section */}
-        <div className={`transition-all duration-1200 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Major Clients Section */}
+        <div>
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center">
               <Building2 className="h-8 w-8 text-purple-400 mr-3" />
@@ -199,8 +181,7 @@ const About = () => {
                 href={client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group bg-gray-800/30 backdrop-blur-sm border border-gray-700/30 rounded-xl p-6 text-center hover:border-purple-500/50 hover:bg-gray-800/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${1000 + index * 100}ms` }}
+                className="group bg-gray-800/30 backdrop-blur-sm border border-gray-700/30 rounded-xl p-6 text-center hover:border-purple-500/50 hover:bg-gray-800/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2"
               >
                 <div className="relative mb-4">
                   <img

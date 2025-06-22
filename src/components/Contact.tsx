@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
-import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
+import { Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,9 +10,6 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
-  const parallaxOffset = useParallax(0.1);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,25 +52,18 @@ const Contact = () => {
 
   return (
     <section 
-      ref={elementRef}
       id="contact" 
       className="py-20 bg-gray-950 relative overflow-hidden"
     >
-      {/* Enhanced Background Elements */}
+      {/* Background Elements */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl transition-transform duration-1000"
-          style={{ transform: `translateY(${parallaxOffset * 0.3}px) scale(${1 + parallaxOffset * 0.0001})` }}
-        />
-        <div 
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl transition-transform duration-1000"
-          style={{ transform: `translateY(${-parallaxOffset * 0.2}px) scale(${1 + parallaxOffset * 0.0001})` }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-cyan-900/5" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className={`text-center mb-16 transition-all duration-1200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Get In <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Touch</span>
           </h2>
@@ -85,7 +74,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className={`space-y-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+          <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-white mb-6">Let's Talk</h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
@@ -96,14 +85,12 @@ const Contact = () => {
 
             <div className="space-y-6">
               {[
-                { icon: Mail, title: 'Email', info: 'hello@techteract.com' },
-                { icon: Phone, title: 'Phone', info: '+1 (555) 123-4567' },
-                { icon: MapPin, title: 'Office', info: 'San Francisco, CA' }
+                { icon: Mail, title: 'Email', info: 'omar.zidan@techteractsolutions.com' },
+                { icon: MapPin, title: 'Location', info: 'UK' }
               ].map(({ icon: Icon, title, info }, index) => (
                 <div 
                   key={index}
-                  className={`flex items-center space-x-4 group transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'}`}
-                  style={{ transitionDelay: `${500 + index * 200}ms` }}
+                  className="flex items-center space-x-4 group"
                 >
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                     <Icon className="h-6 w-6 text-white" />
@@ -117,8 +104,8 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Enhanced Contact Form */}
-          <div className={`bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 hover:border-purple-500/30 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+          {/* Contact Form */}
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 hover:border-purple-500/30 transition-all duration-700">
             {isSubmitted ? (
               <div className="text-center py-12">
                 <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
@@ -131,8 +118,8 @@ const Contact = () => {
                   {[
                     { name: 'name', type: 'text', placeholder: 'Your Name', label: 'Name' },
                     { name: 'email', type: 'email', placeholder: 'your@email.com', label: 'Email' }
-                  ].map((field, index) => (
-                    <div key={field.name} className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{ transitionDelay: `${600 + index * 100}ms` }}>
+                  ].map((field) => (
+                    <div key={field.name}>
                       <label htmlFor={field.name} className="block text-sm font-medium text-gray-300 mb-2">
                         {field.label}
                       </label>
@@ -151,7 +138,7 @@ const Contact = () => {
                   ))}
                 </div>
 
-                <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{ transitionDelay: '800ms' }}>
+                <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
                     Subject
                   </label>
@@ -168,7 +155,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} style={{ transitionDelay: '900ms' }}>
+                <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                     Message
                   </label>
@@ -188,8 +175,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-                  style={{ transitionDelay: '1000ms' }}
+                  className="w-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isSubmitting ? (
                     <>
