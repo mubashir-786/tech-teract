@@ -14,35 +14,77 @@ const Portfolio = () => {
       description: 'Advanced automation and property acquisition software with AI-driven analytics',
       image: '/sourcio.png',
       tags: ['React', 'Node.js', 'AI/ML', 'Automation'],
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-purple-500 to-pink-500',
+      type: 'internal'
+    },
+    {
+      title: 'Fronta',
+      description: 'Enterprise-level consulting project for Swedish market leader in digital solutions',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+      tags: ['Enterprise', 'Consulting', 'Sweden'],
+      color: 'from-blue-500 to-indigo-500',
+      type: 'client',
+      url: 'https://www.fronta.se/'
+    },
+    {
+      title: 'Dometic',
+      description: 'Global leader in mobile living solutions - enterprise consulting and development',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+      tags: ['Global Enterprise', 'Mobile Solutions', 'Consulting'],
+      color: 'from-green-500 to-emerald-500',
+      type: 'client',
+      url: 'https://www.dometic.com/'
+    },
+    {
+      title: 'Ampiro',
+      description: 'Swedish energy and automation solutions - technical consulting and system integration',
+      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop',
+      tags: ['Energy', 'Automation', 'Integration'],
+      color: 'from-yellow-500 to-orange-500',
+      type: 'client',
+      url: 'https://ampiro.se/'
+    },
+    {
+      title: 'Elitfonster',
+      description: 'Premium window and door solutions - e-commerce platform and digital transformation',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+      tags: ['E-commerce', 'Digital Transform', 'Premium'],
+      color: 'from-teal-500 to-cyan-500',
+      type: 'client',
+      url: 'https://www.elitfonster.se/'
+    },
+    {
+      title: 'Mardskog',
+      description: 'Swedish forestry and timber industry - content management and digital solutions',
+      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop',
+      tags: ['Forestry', 'CMS', 'Industry'],
+      color: 'from-emerald-500 to-green-500',
+      type: 'client',
+      url: 'https://mardskog.se/artiklar/'
     },
     {
       title: 'Van On Road',
       description: 'Real-time vehicle tracking and fleet management system',
       image: '/vanonroad.png',
       tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Socket.io'],
-      color: 'from-violet-500 to-purple-500'
+      color: 'from-violet-500 to-purple-500',
+      type: 'internal'
     },
     {
       title: 'Western Cape Logistic',
       description: 'Comprehensive logistics management platform for supply chain optimization',
       image: '/western-cape.png',
       tags: ['Next.js', 'TypeScript', 'API Integration'],
-      color: 'from-yellow-500 to-orange-500'
+      color: 'from-yellow-500 to-orange-500',
+      type: 'internal'
     },
     {
       title: 'EZ Skin',
       description: 'E-commerce platform with advanced product customization features',
       image: '/ez-skin.png',
       tags: ['Vue.js', 'Python', 'PostgreSQL', 'Chart.js'],
-      color: 'from-cyan-500 to-blue-500'
-    },
-    {
-      title: 'Form Builder Pro',
-      description: 'Intelligent form builder with drag-and-drop interface and analytics',
-      image: '/jot-form.png',
-      tags: ['React', 'Node.js', 'MongoDB', 'WebSocket'],
-      color: 'from-orange-500 to-red-500'
+      color: 'from-cyan-500 to-blue-500',
+      type: 'internal'
     }
   ];
 
@@ -90,7 +132,7 @@ const Portfolio = () => {
             Our <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Portfolio</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Showcasing our latest projects and innovative solutions that drive business growth
+            From enterprise consulting with major Swedish companies to cutting-edge internal projects
           </p>
         </div>
 
@@ -108,6 +150,17 @@ const Portfolio = () => {
                   transform: isItemVisible ? `translateY(${parallaxOffset * 0.08}px)` : undefined
                 }}
               >
+                {/* Project Type Badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                    project.type === 'client' 
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                      : 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                  }`}>
+                    {project.type === 'client' ? 'Enterprise Client' : 'Our Project'}
+                  </span>
+                </div>
+
                 {/* Project Image */}
                 <div className="relative overflow-hidden">
                   <img
@@ -119,9 +172,20 @@ const Portfolio = () => {
 
                   {/* Enhanced Overlay */}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center space-x-4">
-                    <div className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                      <ExternalLink className="h-5 w-5 text-white" />
-                    </div>
+                    {project.type === 'client' && project.url ? (
+                      <a 
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
+                      >
+                        <ExternalLink className="h-5 w-5 text-white" />
+                      </a>
+                    ) : (
+                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        <ExternalLink className="h-5 w-5 text-white" />
+                      </div>
+                    )}
                   </div>
                 </div>
 
