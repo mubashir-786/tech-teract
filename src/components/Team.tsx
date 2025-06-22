@@ -11,9 +11,9 @@ const Team = () => {
   const teamMembers = [
     {
       name: 'Omar',
-      role: 'Founder',
-      image: '/Omar.jpg',
-      bio: 'Visionary leader with extensive experience in technology innovation and business strategy, driving Tech Teract\'s mission forward.',
+      role: 'Founder & CEO',
+      image: '/WhatsApp Image 2025-06-15 at 12.30.08 AM.jpeg',
+      bio: 'Visionary leader with 3+ years at Consid Sweden, serving major clients like Fronta, Dometic, and Ampiro. Founded Tech Teract in the UK to deliver cutting-edge automation and property acquisition solutions.',
       social: {
         linkedin: '#',
         twitter: '#',
@@ -22,9 +22,9 @@ const Team = () => {
     },
     {
       name: 'Mubashir Raza',
-      role: 'Co-Founder',
-      image: '/mubashirPic.jpeg',
-      bio: 'Strategic co-founder with deep expertise in software development and team leadership, ensuring exceptional project delivery.',
+      role: 'Co-Founder & CTO',
+      image: '/mub.jpeg',
+      bio: 'Strategic co-founder with deep expertise in software development and team leadership, ensuring exceptional project delivery and technical excellence across all our solutions.',
       social: {
         linkedin: '#',
         twitter: '#',

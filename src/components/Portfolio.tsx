@@ -10,39 +10,39 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: 'Admin Panel',
-      description: 'Full-stack with Nextjs and Node.js for admin management',
-      image: 'https://firebasestorage.googleapis.com/v0/b/tissueweb-f04ae.appspot.com/o/admin-panel.png?alt=media&token=6f5b37f2-bca5-4de6-b8a1-96263630bcea',
-      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      title: 'Sourcio',
+      description: 'Advanced automation and property acquisition software with AI-driven analytics',
+      image: '/sourcio.png',
+      tags: ['React', 'Node.js', 'AI/ML', 'Automation'],
       color: 'from-purple-500 to-pink-500'
     },
     {
-      title: 'EZ Skin',
-      description: 'Frontend and Backend',
-      image: 'https://firebasestorage.googleapis.com/v0/b/tissueweb-f04ae.appspot.com/o/ez-skin.png?alt=media&token=b71e8038-1419-4efd-bfc7-57e6f50e1fe5',
-      tags: ['Vue.js', 'Python', 'PostgreSQL', 'Chart.js'],
-      color: 'from-cyan-500 to-blue-500'
-    },
-    {
-      title: 'Form Builder',
-      description: 'Intelligent form builder with drag-and-drop interface',
-      image: 'https://firebasestorage.googleapis.com/v0/b/tissueweb-f04ae.appspot.com/o/jot-form.png?alt=media&token=77204cd1-e25f-4c66-979e-bf278b47e2aa',
-      tags: ['Nodejs', 'TensorFlow', 'React', 'WebSocket'],
-      color: 'from-orange-500 to-red-500'
-    },
-    {
       title: 'Van On Road',
-      description: 'Real-time vehicle tracking and management system',
-      image: 'https://firebasestorage.googleapis.com/v0/b/tissueweb-f04ae.appspot.com/o/vanonroad.png?alt=media&token=d8e6801c-779b-4ba3-ba69-71ee2ae0d304',
-      tags: ["nextjs", 'Node.js', 'PostgreSQL', 'Socket.io'],
+      description: 'Real-time vehicle tracking and fleet management system',
+      image: '/vanonroad.png',
+      tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Socket.io'],
       color: 'from-violet-500 to-purple-500'
     },
     {
       title: 'Western Cape Logistic',
-      description: 'Details about the Western Cape Logistic',
-      image: 'https://firebasestorage.googleapis.com/v0/b/tissueweb-f04ae.appspot.com/o/western-cape.png?alt=media&token=931946c0-3d43-4770-9be4-7e89dba775bb',
-      tags: ['Next js'],
+      description: 'Comprehensive logistics management platform for supply chain optimization',
+      image: '/western-cape.png',
+      tags: ['Next.js', 'TypeScript', 'API Integration'],
       color: 'from-yellow-500 to-orange-500'
+    },
+    {
+      title: 'EZ Skin',
+      description: 'E-commerce platform with advanced product customization features',
+      image: '/ez-skin.png',
+      tags: ['Vue.js', 'Python', 'PostgreSQL', 'Chart.js'],
+      color: 'from-cyan-500 to-blue-500'
+    },
+    {
+      title: 'Form Builder Pro',
+      description: 'Intelligent form builder with drag-and-drop interface and analytics',
+      image: '/jot-form.png',
+      tags: ['React', 'Node.js', 'MongoDB', 'WebSocket'],
+      color: 'from-orange-500 to-red-500'
     }
   ];
 
@@ -90,7 +90,7 @@ const Portfolio = () => {
             Our <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Portfolio</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Showcasing our latest projects and innovative solutions
+            Showcasing our latest projects and innovative solutions that drive business growth
           </p>
         </div>
 
@@ -117,14 +117,11 @@ const Portfolio = () => {
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-50 transition-all duration-500`} />
 
-                  {/* Enhanced Overlay with Links */}
+                  {/* Enhanced Overlay */}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center space-x-4">
-                    <button className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                    <div className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                       <ExternalLink className="h-5 w-5 text-white" />
-                    </button>
-                    <button className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 hover:scale-110 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 delay-75">
-                      <Github className="h-5 w-5 text-white" />
-                    </button>
+                    </div>
                   </div>
                 </div>
 

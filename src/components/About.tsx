@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Users, Award, Clock, TrendingUp } from 'lucide-react';
+import { Users, Award, Clock, TrendingUp, Building2, Globe } from 'lucide-react';
 import { useScrollAnimation, useParallax } from '../hooks/useScrollAnimation';
 
 const About = () => {
@@ -13,6 +13,14 @@ const About = () => {
     { icon: Users, label: 'Happy Clients', value: 150, suffix: '+' },
     { icon: Clock, label: 'Years Experience', value: 8, suffix: '+' },
     { icon: TrendingUp, label: 'Client Satisfaction', value: 98, suffix: '%' }
+  ];
+
+  const majorClients = [
+    { name: 'Fronta', url: 'https://www.fronta.se/' },
+    { name: 'Dometic', url: 'https://www.dometic.com/' },
+    { name: 'Ampiro', url: 'https://ampiro.se/' },
+    { name: 'Elitfonster', url: 'https://www.elitfonster.se/' },
+    { name: 'Mardskog', url: 'https://mardskog.se/artiklar/' }
   ];
 
   useEffect(() => {
@@ -68,7 +76,7 @@ const About = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
           {/* Content */}
           <div className={`transition-all duration-1200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -76,23 +84,25 @@ const About = () => {
             </h2>
             
             <p className={`text-xl text-gray-300 mb-6 leading-relaxed transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-              We are a passionate team of developers, designers, and innovators dedicated to creating 
-              exceptional digital experiences. Our mission is to transform your ideas into powerful, 
-              scalable solutions that drive business growth.
+              Founded by Omar after 3 successful years as a senior consultant at Consid Sweden, 
+              Tech Teract was born from a vision to deliver world-class digital solutions with 
+              the agility and personal touch that only an independent agency can provide.
             </p>
             
             <p className={`text-gray-300 mb-8 leading-relaxed transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-              With years of experience in cutting-edge technologies, we've helped businesses across 
-              various industries achieve their digital transformation goals. From startups to 
-              enterprise-level solutions, we deliver quality that exceeds expectations.
+              Our founder's extensive experience working with major Swedish enterprises like Fronta, 
+              Dometic, Ampiro, and Elitfonster has shaped our approach to building scalable, 
+              enterprise-grade solutions. Now based in the UK, we're currently developing 
+              cutting-edge automation and property acquisition software (Sourcio) while serving 
+              clients globally.
             </p>
 
             <div className="space-y-4">
               {[
-                'Expert team with 8+ years of experience',
-                'Cutting-edge technologies and best practices',
-                '24/7 support and maintenance',
-                'Agile development methodology'
+                'Enterprise-level expertise from Consid Sweden background',
+                'Proven track record with Fortune 500 companies',
+                'UK-based with global reach and 24/7 support',
+                'Specializing in automation and AI-driven solutions'
               ].map((item, index) => (
                 <div 
                   key={index}
@@ -142,6 +152,35 @@ const About = () => {
                 );
               })}
             </div>
+          </div>
+        </div>
+
+        {/* Major Clients Section */}
+        <div className={`transition-all duration-1200 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center">
+              <Building2 className="h-8 w-8 text-purple-400 mr-3" />
+              Trusted by Industry Leaders
+            </h3>
+            <p className="text-gray-300 text-lg">
+              Our founder's consulting experience includes major Swedish enterprises
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {majorClients.map((client, index) => (
+              <div
+                key={index}
+                className={`bg-gray-800/30 backdrop-blur-sm border border-gray-700/30 rounded-xl p-6 text-center hover:border-purple-500/50 hover:bg-gray-800/50 transition-all duration-500 group hover:scale-105 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${1000 + index * 100}ms` }}
+              >
+                <Globe className="h-8 w-8 text-purple-400 mx-auto mb-3 group-hover:text-cyan-400 transition-colors duration-300" />
+                <h4 className="text-white font-semibold group-hover:text-purple-400 transition-colors duration-300">
+                  {client.name}
+                </h4>
+                <p className="text-gray-400 text-sm mt-1">Enterprise Client</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
